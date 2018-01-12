@@ -6,7 +6,7 @@
 #    By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/01 15:15:18 by wphokomp          #+#    #+#              #
-#    Updated: 2018/01/12 07:23:45 by wphokomp         ###   ########.fr        #
+#    Updated: 2018/01/12 14:54:52 by lmucassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,13 @@ INC = libft.h
 all: $(NAME)
 
 $(NAME):
+	@echo "\033[32mCOMPILING...\033[00M"
 	@$(CC) -c $(CFLAGS) -I $(INC) $(SRC)
+	@echo "\033[32mCreating Objects...\033[00m"
 	@ar -rc $(NAME) $(OBJ)
+	@echo "\033[32mCreating Static Library libft.a\033[00m"
 	@ranlib $(NAME)
-	@echo "\x1b[31mCompiled...\x1b[0m"
+	@echo "\x1b[33mCompiled...\x1b[0m"
 
 clean:
 	@rm -f *.o
