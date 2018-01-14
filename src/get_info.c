@@ -1,6 +1,28 @@
-int		gnl(const int fd, char **line)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_info.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/13 17:51:45 by wphokomp          #+#    #+#             */
+/*   Updated: 2018/01/14 12:51:04 by wphokomp         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/exp_sys.h"
+
+char	**express(char	**data)
 {
-	return (get_next_line(fd, &line));
+	static char	**ret;
+
+	if (!data)
+	{
+		if (!ret)
+			return (NULL);
+		return (ret);
+	}
+	return ((ret = ft_listdup(data)));
 }
 
 int		get_rules(const int fd)
@@ -9,40 +31,34 @@ int		get_rules(const int fd)
 	char	*line;
 
 	cnt = 0;
-	gnl(fd, &line);
-	while (gnl(fd, &line) == 1)
+	while (get_next_line(fd, &line) == 1)
 	{
-		if (line([0] != '#'))
+		if (line[0] != '#')
 			++cnt;
 	}
 	return (cnt);
 }
 
-char	**get_data(int fd, char *file)
+void	get_data(int fd, char *file, t_shunt *shnt)
 {
-	char	**data;
 	char	*line;
 	char	*tmp;
 	int		counter;
 
-	if (!(data = ft_strnew(get_rules(fd))))
-		return (NULL);
-	if (fd > 0)
+	if (!(shnt->data = ft_listnew(get_rules(fd))))
+		return ;
+	fd = ft_restart_file(fd, file);
+	counter = 0;
+	while (get_next_line(fd, &line) == 1)
 	{
-		fd = ft_restart_file(fd, file);
-		counter = 0;
-		while (gnl(fd, &line) == 1)
+		tmp = ft_strtrim(line);
+		free(line);
+		if (tmp[0] != '#' && ft_strlen(tmp) > 0)
 		{
-			tmp = ft_strtrim(line);
-			free(line);
-			if (tmp[0] != '#' && ft_strlen(tmp) > 0)
-			{
-				line = strsub(tmp, 0, ft_strchr_index(tmp, '#'));
-				free(tmp);
-				data[counter] = ft_strtrim(line);
-				counter++;
-			}
+			line = ft_strsub(tmp, 0, ft_strchr_indx(tmp, '#'));
+			free(tmp);
+			shnt->data[counter] = ft_strtrim(line);
+			counter++;
 		}
 	}
-	return (data);
 }

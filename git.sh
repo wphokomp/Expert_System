@@ -1,4 +1,5 @@
 git add *
 git status
-git commit -m "updates"
+read comm_msg
+git commit -m $comm_msg
 git push origin master
