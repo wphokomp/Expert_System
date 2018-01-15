@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/14 12:52:07 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:19:34 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,26 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-/* all structs here */
-
 typedef	struct		s_shunt
 {
-	int		i;
-	int		j;
+	int		op;
+	int		ch;
+	int		op_len;
 
-	char	*operands;
-	char	*opStack;
-	char	*outStack;
+	char	*stack;
+	//char	*stack;
+	char	*queue;
 	char	**polish;
 	char	**data;
 }					t_shunt;
 
-/* all int funcs */
-int		get_rules(const int fd);
-int		find_query();
+int					get_exp(t_shunt *shnt);
+int					get_rules(const int fd);
+int					find_query();
 
-/* all char funcs */
-char	**express(char **data);
+char				**express(t_shunt *shnt);
 
-/* all void funcs */
-void	tokens(t_shunt *shnt);
-void	get_data(int fd, char *file, t_shunt *shnt);
+void				tokens(t_shunt *shnt);
+void				get_data(int fd, char *file, t_shunt *shnt);
 
 #endif
