@@ -1,4 +1,5 @@
-#include "exp_sys.h"
+#include "../inc/exp_sys.h"
+
 void    get_err(int err_num)
 {
     if (err_num == 1)
