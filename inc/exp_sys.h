@@ -16,7 +16,8 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
-
+# define FILE_ERR = 1
+# define FORMT_ERR = 1
 /* all structs here */
 
 typedef	struct		s_shunt
