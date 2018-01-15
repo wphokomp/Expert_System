@@ -40,6 +40,7 @@ int		find_query();
 char	**express(char **data);
 
 /* all void funcs */
+void	get_err(int err_num);
 void	tokens(t_shunt *shnt);
 void	get_data(int fd, char *file, t_shunt *shnt);
 
