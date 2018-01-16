@@ -29,7 +29,7 @@ typedef	struct		s_shunt
 	int		op_len;
 
 	char	*stack;
-	//char	*stack;
+	char	**right;
 	char	*queue;
 	char	**polish;
 	char	**data;
