@@ -1,2 +1,0 @@
-read msg
-echo $msg
