@@ -1,4 +1,3 @@
-git pull
 git status
 git add -A
 git status
