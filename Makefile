@@ -31,8 +31,8 @@ FLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME):
-	@echo "\033[32mExpert_System Starting...\033[00m"
-	@echo "\033[33m========================================\033[00m"
+	@echo "\033[32m\tExpert_System Starting...\033[00m"
+	@echo "\033[33m=============================================\033[00m"
 	@echo "\033[32mMaking C Library..."
 	@make -C $(LIB)
 	@echo "\033[33m=============================================\033[00m"
@@ -43,7 +43,7 @@ $(NAME):
 	@echo "\033[33m=============================================\033[00m"
 	@gcc -c $(FLAGS) $(SRC)
 	@gcc -g -o $(NAME) $(FLAGS) $(OBJ) libft/libft.a
-	@echo "\x1b[34m!AI EXP_SYS is READY FOR YOU!.\x1b[0m"
+	@echo "\x1b[34m\t!AI EXP_SYS is READY FOR YOU!.\x1b[0m"
 	@echo "\033[33m=============================================\033[00m"
 
 clean:
