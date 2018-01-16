@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/15 17:19:34 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/16 11:41:06 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+
+# define FILE_ERR 1
+# define FOMT_ERR 2
+# define USAGE_ERR 3
 
 typedef	struct		s_shunt
 {
@@ -39,9 +43,10 @@ char				**express(t_shunt *shnt);
 
 void				tokens(t_shunt *shnt);
 void				get_data(int fd, char *file, t_shunt *shnt);
+void				getPolish(t_shunt *shnt);
 /* all void funcs */
-void	get_err(int err_num);
-void	tokens(t_shunt *shnt);
-void	get_data(int fd, char *file, t_shunt *shnt);
+void				get_err(int err_num);
+void				tokens(t_shunt *shnt);
+void				get_data(int fd, char *file, t_shunt *shnt);
 
 #endif

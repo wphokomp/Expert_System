@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 18:11:21 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/15 17:23:33 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/16 11:41:03 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	getPolish(t_shunt *shnt)
 	int		j;
 	int		x;
 
-	x = -1;
+	x = 0;
 	shnt->ch = -1;
 	shnt->polish = ft_listnew(get_exp(shnt));
-	while (!ft_chrcmp(shnt->data[++x][0], '=') && shnt->data[x])
+	while (shnt->data[x] && ft_chrcmp(shnt->data[x][0], '=') != 0)
 	{
 		i = -1;
 		j = -1;
@@ -57,7 +57,6 @@ void	getPolish(t_shunt *shnt)
 							ft_strchr_indx(OP, shnt->stack[shnt->op_len]))
 					{
 						shnt->queue[++j] = shnt->stack[shnt->op_len--];
-						//shnt->stack[shnt->op_len] = '\0';
 					}
 				shnt->stack[shnt->op_len] = shnt->data[x][i];
 			}
@@ -74,6 +73,8 @@ void	getPolish(t_shunt *shnt)
 		while (shnt->op >= 0)
 			shnt->queue[j++] = shnt->stack[shnt->op--];
 		shnt->polish[++shnt->ch] = ft_strdup(shnt->queue);
+		ft_putendl(shnt->polish[shnt->ch]);
+		x++;
 	}
 	if (x == ft_strlen_point(shnt->data))
 	{
