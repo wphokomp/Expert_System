@@ -29,6 +29,10 @@ typedef	struct		s_shunt
 	int		st_len;
 
 	char	*stack;
+<<<<<<< HEAD
+=======
+	char	**right;
+>>>>>>> ce93496afc44339ead01e7eb0548159012920aae
 	char	*queue;
 	char	**polish;
 	char	**data;
