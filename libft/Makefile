@@ -6,7 +6,7 @@
 #    By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/01 15:15:18 by wphokomp          #+#    #+#              #
-#    Updated: 2018/01/15 17:21:52 by wphokomp         ###   ########.fr        #
+#    Updated: 2018/01/16 16:31:48 by wphokomp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC = ft_atoi.c ft_bzero.c ft_bzero_point.c ft_isalnum.c ft_isalpha.c\
 	  ft_strnew_point.c ft_strnstr.c ft_strrchr.c ft_strsplit.c ft_strstr.c\
 	  ft_strsub.c ft_strdup.c ft_strtrim.c ft_tolower.c ft_toupper.c\
 	  get_next_line.c ft_restart_file.c ft_listnew.c ft_strchr_indx.c\
-	  ft_strsplit_2.c ft_listdup.c ft_isop.c ft_chrcmp.c
+	  ft_strsplit_2.c ft_listdup.c ft_isop.c ft_chrcmp.c ft_isbrac.c
 
 CFLAGS = -Wall\
 		 -Werror\

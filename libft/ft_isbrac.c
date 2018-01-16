@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isop.c                                          :+:      :+:    :+:   */
+/*   ft_isbrac.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 12:37:28 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/16 12:25:45 by wphokomp         ###   ########.fr       */
+/*   Created: 2018/01/16 16:29:49 by wphokomp          #+#    #+#             */
+/*   Updated: 2018/01/16 16:31:12 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isop(char op)
+int		ft_isbrac(char ch)
 {
-	int		i;
-
-	i = -1;
-	while (OP[++i])
-	{
-		if (ft_chrcmp(OP[i], op) == 0)
-			return (1);
-	}
+	if (!ft_chrcmp(ch, ')') || !ft_chrcmp(ch, '('))
+		return (1);
 	return (0);
 }

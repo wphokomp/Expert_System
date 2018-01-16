@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 18:11:21 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/16 11:41:03 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/16 17:16:06 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,52 +31,74 @@ char	*get_queries(char **data)
 void	getPolish(t_shunt *shnt)
 {
 	int		i;
-	int		j;
-	int		x;
+	int		cnt;
 
-	x = 0;
-	shnt->ch = -1;
+	i = 0;
 	shnt->polish = ft_listnew(get_exp(shnt));
-	while (shnt->data[x] && ft_chrcmp(shnt->data[x][0], '=') != 0)
+	while (ft_chrcmp(shnt->data[i][0], '=') != 0)
 	{
-		i = -1;
-		j = -1;
-		shnt->op = 0;
-		shnt->stack = ft_strnew(ft_strlen(shnt->data[x]));
-		shnt->queue = ft_strnew(ft_strlen(shnt->data[x]));
-		while (shnt->data[x][++i] != '=' || shnt->data[x][i] != '<')
+		cnt = 0;
+		shnt->que = 0;
+		shnt->st = 0;
+		shnt->st_len = 0;
+		shnt->queue = ft_strnew(ft_strlen(shnt->data[i]));
+		shnt->stack = ft_strnew(ft_strlen(shnt->data[i]));
+		while (shnt->data[i][cnt])
 		{
-			if (ft_isalpha(shnt->data[x][i]))
-				shnt->queue[++j] = shnt->data[x][i];
-			if (ft_isop(shnt->data[x][i]))
+			if (!ft_chrcmp(shnt->data[i][cnt], '<') || 
+					!ft_chrcmp(shnt->data[i][cnt], '='))
+				break ;
+			else
 			{
-				shnt->op_len = ft_strlen(shnt->stack);
-				while (shnt->op_len)
-					if (shnt->op_len > 0 && 
-							ft_strchr_indx(OP, shnt->data[x][i]) < 
-							ft_strchr_indx(OP, shnt->stack[shnt->op_len]))
+				if (ft_isalpha(shnt->data[i][cnt]))
+				{
+					shnt->queue[shnt->que] = shnt->data[i][cnt];
+					shnt->que++;
+				}
+				if (ft_isop(shnt->data[i][cnt]))
+				{
+					shnt->st = ft_strlen(shnt->stack);
+					while (ft_strchr_indx(OP, shnt->data[i][cnt]) < 
+							ft_strchr_indx(OP, shnt->stack[shnt->st]))
 					{
-						shnt->queue[++j] = shnt->stack[shnt->op_len--];
+						shnt->queue[shnt->que] = shnt->stack[shnt->st];
+						shnt->st--;
 					}
-				shnt->stack[shnt->op_len] = shnt->data[x][i];
+					shnt->st_len = ft_strlen(shnt->stack);
+					shnt->stack[shnt->st_len] = shnt->data[i][cnt];
+				}
+				shnt->st_len = ft_strlen(shnt->stack);
+				if (!ft_chrcmp(shnt->data[i][cnt], '('))
+				{
+					shnt->stack[shnt->st_len] = shnt->data[i][cnt];
+					shnt->st_len++;
+				}
+				else if (!ft_chrcmp(shnt->data[i][cnt], ')'))
+				{
+					while (ft_chrcmp(shnt->stack[--shnt->st_len], '(') != 0)
+					{
+						shnt->queue[shnt->que] = shnt->stack[shnt->st_len];
+						shnt->que++;
+						shnt->stack[shnt->st_len] = '\0';
+					}
+					shnt->stack[shnt->st_len] = '\0';
+				}
 			}
-			shnt->op = ft_strlen(shnt->stack);
-			if (!ft_chrcmp(shnt->data[x][i], '('))
-				shnt->stack[shnt->op++] = shnt->data[x][i];
-			else if (!ft_chrcmp(shnt->data[x][i], ')'))
-			{
-				while (ft_chrcmp(shnt->stack[shnt->op], '('))
-					shnt->queue[++j] = shnt->stack[shnt->op--];
-				shnt->stack[shnt->op] = '\0';
-			}
+			cnt++;
 		}
-		while (shnt->op >= 0)
-			shnt->queue[j++] = shnt->stack[shnt->op--];
-		shnt->polish[++shnt->ch] = ft_strdup(shnt->queue);
-		ft_putendl(shnt->polish[shnt->ch]);
-		x++;
+		//ft_putendl(shnt->queue);
+		while (--shnt->st_len >= 0)
+		{
+			shnt->queue[shnt->que] = shnt->stack[shnt->st_len];
+			shnt->que++;
+		}
+		ft_putendl(shnt->queue);
+		//shnt->polish[i] = ft_strtrim(shnt->queue);
+		//free(shnt->queue);
+		i++;
 	}
-	if (x == ft_strlen_point(shnt->data))
+	//ft_putendl(shnt->polish[0]);
+	if (i == ft_strlen_point(shnt->data))
 	{
 		ft_putendl("\x1b[31mFormat incorrect\x1b[0m");
 		exit(0);

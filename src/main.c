@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:39:46 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/16 11:10:09 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/16 14:35:10 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,7 @@ int		main(int argc, char *argv[])
 			}
 			express(&shnt);
 			getPolish(&shnt);
-			//i = ft_strlen_point(shnt.data);
 			i = 0;
-			//if (!shnt.polish[0])
-			//	ft_putendl("NOTING");
-			/*
-			while (shnt.polish[i])
-			{
-				ft_putendl(shnt.polish[i++]);
-			}*/
 		}
 		else
 		{

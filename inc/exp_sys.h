@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/16 11:41:06 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/16 15:58:59 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@
 
 typedef	struct		s_shunt
 {
-	int		op;
-	int		ch;
-	int		op_len;
+	int		que;
+	int		st;
+	int		st_len;
 
 	char	*stack;
-	//char	*stack;
 	char	*queue;
 	char	**polish;
 	char	**data;

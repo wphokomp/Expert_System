@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 14:43:24 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/15 17:22:10 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/16 16:31:32 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		ft_restart_file(int fd, char *file);
 int		ft_list_del_el(char **lisr, char *str);
 int		ft_atoi(const char *str);
 int		ft_isop(char op);
+int		ft_isbrac(char ch);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
