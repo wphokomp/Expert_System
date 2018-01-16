@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/15 17:19:34 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/16 10:22:59 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+
+# define FILE_ERR 1
+# define FOMT_ERR 2
+# define USAGE_ERR 3
 
 typedef	struct		s_shunt
 {
