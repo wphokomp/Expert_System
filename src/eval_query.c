@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 18:11:21 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/17 15:03:09 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 16:36:49 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,42 @@ void	add_op(char c, t_shunt *shnt)
 	}
 }
 
+void	add_alph_brack(char c, t_shunt *shnt)
+{
+	/*if (ft_isalpha(c))
+	  {
+	  shnt->queue[shnt->que] = c;
+	  shnt->que++;
+	  }*/
+	add_op(c, shnt);
+	if (!ft_chrcmp(c, '('))
+		shnt->stack[shnt->st_len] = c;
+	else if (!ft_chrcmp(c, ')'))
+	{
+		while (ft_chrcmp(shnt->stack[--shnt->st_len], ')') != 0)
+		{
+			shnt->queue[shnt->que] = shnt->stack[shnt->st_len];
+			shnt->que++;
+			shnt->stack[shnt->st_len] = '\0';
+		}
+		shnt->stack[shnt->st_len] = '\0';
+	}
+}
+
+void	get_right(t_shunt *shnt)
+{
+	int	i;
+	int	pos;
+
+	i = -1;
+	shnt->right = ft_strnew_point(get_exp(shnt));
+	while (++i < get_exp(shnt))
+	{
+		pos = ft_strchr_indx(shnt->data[i], '>') + 1;
+		shnt->right[i] = ft_strtrim(shnt->data[i] + pos);
+	}
+}
+
 void	get_polish(t_shunt *shnt)
 {
 	int		i;
@@ -69,23 +105,25 @@ void	get_polish(t_shunt *shnt)
 					shnt->queue[shnt->que] = shnt->data[i][cnt];
 					shnt->que++;
 				}
-				add_op(shnt->data[i][cnt], shnt);
+				//add_op(shnt->data[i][cnt], shnt);
 				shnt->st_len = ft_strlen(shnt->stack);
-				if (!ft_chrcmp(shnt->data[i][cnt], '('))
-				{
+				/*	
+					if (!ft_chrcmp(shnt->data[i][cnt], '('))
+					{
 					shnt->stack[shnt->st_len] = shnt->data[i][cnt];
 					shnt->st_len++;
-				}
-				else if (!ft_chrcmp(shnt->data[i][cnt], ')'))
-				{
+					}
+					else if (!ft_chrcmp(shnt->data[i][cnt], ')'))
+					{
 					while (ft_chrcmp(shnt->stack[--shnt->st_len], '(') != 0)
 					{
-						shnt->queue[shnt->que] = shnt->stack[shnt->st_len];
-						shnt->que++;
-						shnt->stack[shnt->st_len] = '\0';
+					shnt->queue[shnt->que] = shnt->stack[shnt->st_len];
+					shnt->que++;
+					shnt->stack[shnt->st_len] = '\0';
 					}
 					shnt->stack[shnt->st_len] = '\0';
-				}
+					}*/
+				add_alph_brack(shnt->data[i][cnt], shnt);
 			}
 			cnt++;
 		}
@@ -94,7 +132,7 @@ void	get_polish(t_shunt *shnt)
 			shnt->queue[shnt->que] = shnt->stack[shnt->st_len];
 			shnt->que++;
 		}
-		ft_putendl(shnt->queue);
+		//ft_putendl(shnt->queue);
 		i++;
 	}
 	if (i == ft_strlen_point(shnt->data))

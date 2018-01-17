@@ -6,24 +6,11 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 17:51:45 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/15 17:20:43 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 16:51:29 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exp_sys.h"
-
-char	**express(t_shunt *shnt)
-{
-	static char	**ret;
-
-	if (!shnt->data)
-	{
-		if (!ret)
-			return (NULL);
-		return (ret);
-	}
-	return ((ret = ft_listdup(shnt->data)));
-}
 
 int		get_rules(const int fd)
 {
@@ -61,5 +48,4 @@ void	get_data(int fd, char *file, t_shunt *shnt)
 			++counter;
 		}
 	}
-	shnt->polish = ft_listnew(counter);
 }

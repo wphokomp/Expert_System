@@ -6,14 +6,12 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:39:46 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/17 14:56:34 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 16:59:35 by wphokomp         ###   ########.fr       */
 /*   Updated: 2018/01/16 11:46:22 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exp_sys.h"
-#include <fcntl.h>
-#include "stdio.h"
 
 int		main(int argc, char *argv[])
 {
@@ -32,9 +30,14 @@ int		main(int argc, char *argv[])
 				get_err(FILE_ERR);
 				exit(1);
 			}
-			express(&shnt);
-			get_polish(&shnt);
+			//get_polish(&shnt);
+			get_right(&shnt);
 			i = 0;
+			while (shnt.right[i])
+			{
+				ft_putendl(shnt.right[i]);
+				i++;
+			}
 		}
 		else
 		{

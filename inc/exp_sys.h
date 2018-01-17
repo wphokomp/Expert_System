@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/17 14:56:12 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 17:22:23 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef	struct		s_shunt
 
 	char	*stack;
 	char	**right;
+	char	**rightPolish;:q
+
 	char	*queue;
 	char	**polish;
 	char	**data;
@@ -41,6 +43,7 @@ int					find_query();
 
 char				**express(t_shunt *shnt);
 
+void				get_right(t_shunt *shnt);
 void				tokens(t_shunt *shnt);
 void				get_data(int fd, char *file, t_shunt *shnt);
 void				get_polish(t_shunt *shnt);
