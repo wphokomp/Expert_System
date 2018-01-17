@@ -6,7 +6,7 @@
 #    By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 19:58:44 by wphokomp          #+#    #+#              #
-#    Updated: 2018/01/16 10:27:00 by wphokomp         ###   ########.fr        #
+#    Updated: 2018/01/17 12:46:26 by wphokomp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC		= I $(HEAD)
 
 SRC_P	= ./src/
 
-SRCS	= main.c get_info.c eval_query.c token_type.c error_hndler.c
+SRCS	= main.c get_info.c eval_query.c rev_polish.c error_hndler.c
 
 SRC		= $(addprefix $(SRC_P), $(SRCS))
 
@@ -49,6 +49,7 @@ $(NAME):
 clean:
 	@echo "\033[31mCleaning Project EXP_SYS...\033[00m"
 	@rm -fr $(OBJ)
+	@rm -fr ./src/.*.swp
 	@cd $(LIB) && $(MAKE) clean
 	@echo "\x1b[31mObject files cleaned.\x1b[0m"
 

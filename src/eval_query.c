@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 18:11:21 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/16 17:16:06 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 14:14:36 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,34 @@ char	*get_queries(char **data)
 	return (queries + 1);
 }
 
-void	getPolish(t_shunt *shnt)
+int		op(char c)
+{
+	int		i;
+
+	i = -1;
+	while (OP[++i])
+	{
+		if (!ft_chrcmp(OP[i], c))
+			return (1);
+	}
+	return (0);
+}
+
+void	add_op(char c, t_shunt *shnt)
+{
+	if (op(c))
+	{
+		shnt->st = ft_strlen(shnt->stack);
+		while (ft_strchr_indx(OP, c) < ft_strchr_indx(OP, c))
+		{
+			shnt->queue[shnt->que] = shnt->stack[shnt->st];
+			shnt->st--;
+		}
+		shnt->stack[ft_strlen(shnt->stack)] = c;
+	}
+}
+
+void	get_polish(t_shunt *shnt)
 {
 	int		i;
 	int		cnt;
@@ -45,7 +72,7 @@ void	getPolish(t_shunt *shnt)
 		shnt->stack = ft_strnew(ft_strlen(shnt->data[i]));
 		while (shnt->data[i][cnt])
 		{
-			if (!ft_chrcmp(shnt->data[i][cnt], '<') || 
+			if (!ft_chrcmp(shnt->data[i][cnt], '<') ||
 					!ft_chrcmp(shnt->data[i][cnt], '='))
 				break ;
 			else
@@ -55,18 +82,7 @@ void	getPolish(t_shunt *shnt)
 					shnt->queue[shnt->que] = shnt->data[i][cnt];
 					shnt->que++;
 				}
-				if (ft_isop(shnt->data[i][cnt]))
-				{
-					shnt->st = ft_strlen(shnt->stack);
-					while (ft_strchr_indx(OP, shnt->data[i][cnt]) < 
-							ft_strchr_indx(OP, shnt->stack[shnt->st]))
-					{
-						shnt->queue[shnt->que] = shnt->stack[shnt->st];
-						shnt->st--;
-					}
-					shnt->st_len = ft_strlen(shnt->stack);
-					shnt->stack[shnt->st_len] = shnt->data[i][cnt];
-				}
+				addOp(shnt->data[i][cnt], shnt);
 				shnt->st_len = ft_strlen(shnt->stack);
 				if (!ft_chrcmp(shnt->data[i][cnt], '('))
 				{
@@ -86,18 +102,14 @@ void	getPolish(t_shunt *shnt)
 			}
 			cnt++;
 		}
-		//ft_putendl(shnt->queue);
 		while (--shnt->st_len >= 0)
 		{
 			shnt->queue[shnt->que] = shnt->stack[shnt->st_len];
 			shnt->que++;
 		}
 		ft_putendl(shnt->queue);
-		//shnt->polish[i] = ft_strtrim(shnt->queue);
-		//free(shnt->queue);
 		i++;
 	}
-	//ft_putendl(shnt->polish[0]);
 	if (i == ft_strlen_point(shnt->data))
 	{
 		ft_putendl("\x1b[31mFormat incorrect\x1b[0m");

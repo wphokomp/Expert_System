@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/16 15:58:59 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 13:00:24 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ typedef	struct		s_shunt
 	int		st_len;
 
 	char	*stack;
-<<<<<<< HEAD
-=======
 	char	**right;
->>>>>>> ce93496afc44339ead01e7eb0548159012920aae
 	char	*queue;
 	char	**polish;
 	char	**data;
@@ -49,7 +46,6 @@ void				get_data(int fd, char *file, t_shunt *shnt);
 void				getPolish(t_shunt *shnt);
 /* all void funcs */
 void				get_err(int err_num);
-void				tokens(t_shunt *shnt);
 void				get_data(int fd, char *file, t_shunt *shnt);
 
 #endif
