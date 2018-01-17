@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 18:11:21 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/17 14:14:36 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:03:09 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@ char	*get_queries(char **data)
 	while (data[data_len][++i])
 		queries[i] = data[data_len][i];
 	return (queries + 1);
-}
-
-int		op(char c)
-{
-	int		i;
-
-	i = -1;
-	while (OP[++i])
-	{
-		if (!ft_chrcmp(OP[i], c))
-			return (1);
-	}
-	return (0);
 }
 
 void	add_op(char c, t_shunt *shnt)
@@ -82,7 +69,7 @@ void	get_polish(t_shunt *shnt)
 					shnt->queue[shnt->que] = shnt->data[i][cnt];
 					shnt->que++;
 				}
-				addOp(shnt->data[i][cnt], shnt);
+				add_op(shnt->data[i][cnt], shnt);
 				shnt->st_len = ft_strlen(shnt->stack);
 				if (!ft_chrcmp(shnt->data[i][cnt], '('))
 				{

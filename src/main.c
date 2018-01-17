@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:39:46 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/17 13:58:22 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 14:56:34 by wphokomp         ###   ########.fr       */
 /*   Updated: 2018/01/16 11:46:22 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -33,7 +33,7 @@ int		main(int argc, char *argv[])
 				exit(1);
 			}
 			express(&shnt);
-			getPolish(&shnt);
+			get_polish(&shnt);
 			i = 0;
 		}
 		else

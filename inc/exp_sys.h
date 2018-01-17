@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/17 13:00:24 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/17 14:56:12 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char				**express(t_shunt *shnt);
 
 void				tokens(t_shunt *shnt);
 void				get_data(int fd, char *file, t_shunt *shnt);
-void				getPolish(t_shunt *shnt);
+void				get_polish(t_shunt *shnt);
 /* all void funcs */
 void				get_err(int err_num);
 void				get_data(int fd, char *file, t_shunt *shnt);
