@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 18:11:21 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/17 16:36:49 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/18 11:11:43 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	get_polish(t_shunt *shnt)
 	}
 	if (i == ft_strlen_point(shnt->data))
 	{
-		ft_putendl("\x1b[31mFormat incorrect\x1b[0m");
+		get_err(FOMT_ERR);
 		exit(0);
 	}
 }
