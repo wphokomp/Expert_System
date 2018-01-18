@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hndler.c                                     :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 10:52:40 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/18 13:50:05 by wphokomp         ###   ########.fr       */
+/*   Created: 2018/01/18 14:26:52 by lmucassi          #+#    #+#             */
+/*   Updated: 2018/01/18 15:38:15 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exp_sys.h"
 
-void    get_err(int err_num)
+void	is_dup(t_shunt *shnt)
 {
-    if (err_num == 1)
-        ft_putendl("\x1b[31mOops! The file you tried to access is not valid or does not exist!\x1b[0m");
-    else if (err_num == 2)
-	{
-        ft_putendl("\x1b[31mOops! The format used is incorrect!\x1b[0m");
-		exit(0);
-	}
-	else if (err_num == 3)
-		 ft_putendl("\x1b[31mUsage: ./expert_system [FILE]\x1b[0m");
+	int i;
+	int j;
+	int	k;
 
-    else
-        ft_putendl("\x1b[31mOops! There seems to be an error!\x1b[0m");
+	i = 0;
+	j = 0;
+	k = 0;
+	printf("I am her");
+	while (shnt->polish[i])
+	{
+		printf("i am here 1");
+		while(ft_isalpha(shnt->polish[i][j]))
+		{
+			printf("i am here 2");
+		/*	if (ft_strchr(shnt->no_dups, shnt->polish[i][j]))
+				j++;
+			else
+			{
+				shnt->no_dups[k++] = shnt->polish[i][j];
+				j++;
+			}
+			ft_putendl(&shnt->no_dups[k]);*/
+		}
+		j = 0;
+		i++;
+	}
 }
