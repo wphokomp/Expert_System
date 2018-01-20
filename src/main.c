@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:39:46 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/18 15:27:48 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/20 02:10:49 by wphokomp         ###   ########.fr       */
 /*   Updated: 2018/01/16 11:46:22 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@ void	init(t_shunt *shnt, int i)
 	}
 	shnt->que = 0;
 	shnt->st_len = 0;
+	shnt->ch = 0;
 	shnt->queue = ft_strnew(ft_strlen(shnt->data[i]));
 	shnt->stack = ft_strnew(ft_strlen(shnt->data[i]));
 }
@@ -30,8 +31,7 @@ int		main(int argc, char *argv[])
 {
 	t_shunt	shnt;
 	int		fd;
-	int		i;
-
+	
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
@@ -44,10 +44,10 @@ int		main(int argc, char *argv[])
 				exit(1);
 			}
 			get_polish(&shnt);
-			get_right(&shnt);
-			is_dup(&shnt);
-
-			i = 0;
+			store_val(&shnt);
+			int		i = -1;
+			while (shnt.polish[++i])
+				ft_putendl(shnt.polish[i]);
 		}
 		else
 		{

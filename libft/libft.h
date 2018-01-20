@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 14:43:24 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/17 14:59:59 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/19 13:51:53 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memalloc(size_t size);
 void	ft_free2d(void **arr);
+void	ft_sortarr(char *arr);
 
 int		ft_restart_file(int fd, char *file);
 int		ft_list_del_el(char **lisr, char *str);

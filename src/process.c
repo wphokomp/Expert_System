@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 14:26:52 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/18 15:38:15 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/20 01:53:00 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,62 @@
 
 void	is_dup(t_shunt *shnt)
 {
-	int i;
-	int j;
-	int	k;
+	int		i;
+	int		j;
+	char	*tmp;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	printf("I am her");
-	while (shnt->polish[i])
+	i = -1;
+	j = -1;
+	shnt->no_dups = ft_strnew(shnt->ch);
+	tmp = ft_strnew(shnt->ch);
+	while (shnt->polish[++i])
 	{
-		printf("i am here 1");
-		while(ft_isalpha(shnt->polish[i][j]))
-		{
-			printf("i am here 2");
-		/*	if (ft_strchr(shnt->no_dups, shnt->polish[i][j]))
-				j++;
-			else
-			{
-				shnt->no_dups[k++] = shnt->polish[i][j];
-				j++;
-			}
-			ft_putendl(&shnt->no_dups[k]);*/
-		}
-		j = 0;
-		i++;
+		shnt->st = -1;
+		while (shnt->polish[i][++shnt->st])
+			if (ft_isalpha(shnt->polish[i][shnt->st]))
+				tmp[++j] = shnt->polish[i][shnt->st];
+	}
+	ft_sortarr(tmp);
+	i = -1;
+	j = -1;
+	while (++i < (int)ft_strlen(tmp) - 1)
+		if (tmp[i] != tmp[i + 1])
+			shnt->no_dups[++j] = tmp[i];
+	shnt->no_dups[++j] = tmp[i++];
+}
+
+char	**ft_getfacts(t_shunt *shnt)
+{
+	int		i;
+	int		fact_cnt;
+	char	**facts;
+
+	i = -1;
+	fact_cnt = 0;
+	while (shnt->data[++i])
+		if (shnt->data[i][0] == '=')
+			fact_cnt++;
+	if (!fact_cnt)
+		get_err(2);
+	if (!(facts = ft_strnew_point(fact_cnt)))
+		return (NULL);
+	i = -1;
+	fact_cnt = -1;
+	while (shnt->data[++i])
+		if (shnt->data[i][0] == '=')
+			facts[++fact_cnt] = ft_strdup(shnt->data[i] + 1);
+	ft_getquery(shnt);
+	return (facts);
+}
+
+void	ft_getquery(t_shunt *shnt)
+{
+	int		i;
+
+	i = -1;
+	while (shnt->data[++i])
+	{
+		if (shnt->data[i][0] == '?')
+			shnt->query = ft_strdup(shnt->data[i] + 1);
 	}
 }

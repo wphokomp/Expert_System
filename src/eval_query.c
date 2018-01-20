@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 18:11:21 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/18 15:32:52 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/19 17:28:59 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	add_op(char c, t_shunt *shnt)
 	{
 		shnt->queue[shnt->que] = c;
 		shnt->que++;
+		shnt->ch++;
 	}
 	if (op(c))
 	{
@@ -89,9 +90,10 @@ void	get_polish(t_shunt *shnt)
 			cnt++;
 		}
 		push_into(shnt, i);
-	//	ft_putendl(shnt->polish[i]);
 		i++;
 	}
 	if (i == ft_strlen_point(shnt->data))
 		get_err(FOMT_ERR);
+	get_right(shnt);
+	is_dup(shnt);
 }
