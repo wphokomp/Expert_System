@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 17:51:45 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/17 16:51:29 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/19 23:36:44 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,35 @@ void	get_data(int fd, char *file, t_shunt *shnt)
 			free(tmp);
 			shnt->data[counter] = ft_strtrim(line);
 			++counter;
+		}
+	}
+}
+
+void	store_val(t_shunt *shnt)
+{
+	char	**f;
+	int		i;
+	int		track;
+
+	track = 0;
+	shnt->que = -1;
+	f = ft_getfacts(shnt);
+	shnt->ch_val = (bool **)malloc(sizeof(bool) * ft_strlen_point(f));
+	while (f[++shnt->que])
+	{
+		i = -1;
+		shnt->st_len = 0;
+		shnt->ch_val[shnt->que] = (bool *)malloc(sizeof(bool) *
+				ft_strlen(shnt->no_dups));
+		while (shnt->no_dups[++i])
+		{
+			if (shnt->no_dups[i] == f[shnt->que][shnt->st_len])
+			{
+				shnt->ch_val[shnt->que][i] = true;
+				shnt->st_len++;
+			}
+			else
+				shnt->ch_val[shnt->que][i] = false;
 		}
 	}
 }

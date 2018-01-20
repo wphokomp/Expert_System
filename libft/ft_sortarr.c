@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_del_el.c                                   :+:      :+:    :+:   */
+/*   ft_sortarr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 15:04:15 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/19 16:55:24 by wphokomp         ###   ########.fr       */
+/*   Created: 2018/01/19 13:39:48 by wphokomp          #+#    #+#             */
+/*   Updated: 2018/01/19 17:15:45 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_list_del_el(char **list, char *el)
+void	ft_sortarr(char *arr)
 {
+	char	tmp;
 	int		i;
-	int		f;
+	int		j;
+	int		len;
 
-	i = 0;
-	f = 0;
-	while (list[i])
+	i = -1;
+	len = (int)ft_strlen(arr);
+	while (++i < len - 1)
 	{
-		if (ft_strcmp(list[i], el) == 0)
+		j = -1;
+		while (++j < len - i - 1)
 		{
-			f = 1;
-			free(list[i]);
-			list[i] = NULL;
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j + 1];
+				arr[j + 1] = arr[j];
+				arr[j] = tmp;
+			}
 		}
-		if (f)
-		{
-			list[i] = list[i + 1];
-		}
-		i++;
 	}
-	if (f)
-	{
-		free(list[i]);
-		list[i] = NULL;
-	}
-	return (f);
 }

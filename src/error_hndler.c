@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_hndler.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/18 10:52:40 by lmucassi          #+#    #+#             */
+/*   Updated: 2018/01/19 17:31:21 by wphokomp         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/exp_sys.h"
 
 void    get_err(int err_num)
@@ -8,7 +20,7 @@ void    get_err(int err_num)
         ft_putendl("\x1b[31mOops! The format used is incorrect!\x1b[0m");
 	else if (err_num == 3)
 		 ft_putendl("\x1b[31mUsage: ./expert_system [FILE]\x1b[0m");
-
     else
         ft_putendl("\x1b[31mOops! There seems to be an error!\x1b[0m");
+	exit(0);
 }
