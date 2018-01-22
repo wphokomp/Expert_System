@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 14:43:24 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/19 13:51:53 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/22 12:13:35 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ struct	s_list
 void	ft_putchar(char c);
 void	ft_putstr(char const *s);
 void	ft_putnbr(int n);
+void	ft_putnbrendl(int n);
 void	ft_bzero(void *s, size_t n);
 void	ft_bzero_point(void **s, size_t n);
 void	ft_memdel(void **ap);

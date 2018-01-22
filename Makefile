@@ -6,7 +6,7 @@
 #    By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 19:58:44 by wphokomp          #+#    #+#              #
-#    Updated: 2018/01/18 14:56:35 by wphokomp         ###   ########.fr        #
+#    Updated: 2018/01/22 09:01:34 by wphokomp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ INC		= I $(HEAD)
 
 SRC_P	= ./src/
 
-SRCS	= main.c get_info.c eval_query.c rev_polish.c error_hndler.c process.c
+SRCS	= main.c get_info.c eval_query.c rev_polish.c error_hndler.c process.c\
+		  compute.c
 
 SRC		= $(addprefix $(SRC_P), $(SRCS))
 

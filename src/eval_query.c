@@ -6,13 +6,13 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 18:11:21 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/19 17:28:59 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/22 13:06:58 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exp_sys.h"
 
-char	*get_queries(char **data)
+/*char	*get_queries(char **data)
 {
 	int		i;
 	size_t	len;
@@ -26,7 +26,7 @@ char	*get_queries(char **data)
 	while (data[data_len][++i])
 		queries[i] = data[data_len][i];
 	return (queries + 1);
-}
+}*/
 
 void	add_op(char c, t_shunt *shnt)
 {
@@ -76,7 +76,7 @@ void	get_polish(t_shunt *shnt)
 
 	i = 0;
 	shnt->polish = ft_listnew(get_exp(shnt));
-	while (ft_chrcmp(shnt->data[i][0], '=') != 0)
+	while (ft_chrcmp(shnt->data[i][0], '=') != 0 && shnt->data[i][0] != '?')
 	{
 		cnt = 0;
 		init(shnt, i);
@@ -96,4 +96,5 @@ void	get_polish(t_shunt *shnt)
 		get_err(FOMT_ERR);
 	get_right(shnt);
 	is_dup(shnt);
+	store_val(shnt);
 }

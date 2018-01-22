@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbrendl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/03 14:41:37 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/22 12:12:02 by wphokomp         ###   ########.fr       */
+/*   Created: 2018/01/22 12:12:23 by wphokomp          #+#    #+#             */
+/*   Updated: 2018/01/22 12:12:58 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+void	ft_putnbrendl(int nbr)
 {
-	if (n > 2147483647 || n < -2147483647)
-		return ;
-	if (n == -2147483647)
-	{
-		ft_putstr("-2147483647");
-		return ;
-	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n *= -1;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		ft_putchar(n + '0');
+	ft_putnbr(nbr);
+	ft_putchar('\n');
 }
