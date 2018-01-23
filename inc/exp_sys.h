@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/22 15:02:18 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:08:04 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void				init(t_shunt *shnt, int i);
 void				is_dup(t_shunt *shnt);
 void				process(t_shunt *shnt);
 void				push_into(t_shunt *shnt, int i);
+void				final(t_shunt *shnt);
 
 #endif
