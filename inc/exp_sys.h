@@ -6,7 +6,7 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/20 01:48:40 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:08:04 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ typedef	struct		s_shunt
 	char	**polish;
 	char	**data;
 	char	*query;
+	char	**facts;
 
 	bool	**ch_val;
+	bool	A;
+	bool	B;
 }					t_shunt;
 
 int					get_exp(t_shunt *shnt);
@@ -59,6 +62,8 @@ void				store_val(t_shunt *shnt);
 
 void				init(t_shunt *shnt, int i);
 void				is_dup(t_shunt *shnt);
+void				process(t_shunt *shnt);
 void				push_into(t_shunt *shnt, int i);
+void				final(t_shunt *shnt);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 19:58:44 by wphokomp          #+#    #+#              #
-#    Updated: 2018/01/18 14:56:35 by wphokomp         ###   ########.fr        #
+#    Updated: 2018/01/23 16:08:25 by lmucassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ INC		= I $(HEAD)
 
 SRC_P	= ./src/
 
-SRCS	= main.c get_info.c eval_query.c rev_polish.c error_hndler.c process.c
+SRCS	= main.c get_info.c eval_query.c rev_polish.c error_hndler.c process.c\
+		  compute.c dis_res.c
 
 SRC		= $(addprefix $(SRC_P), $(SRCS))
 
@@ -43,12 +44,12 @@ $(NAME):
 	@echo "\033[33m=============================================\033[00m"
 	@gcc -c $(FLAGS) $(SRC)
 	@gcc -g -o $(NAME) $(FLAGS) $(OBJ) libft/libft.a
+	@rm -fr $(OBJ)
 	@echo "\x1b[34m\t!AI EXP_SYS is READY FOR YOU!.\x1b[0m"
 	@echo "\033[33m=============================================\033[00m"
 
 clean:
 	@echo "\033[31mCleaning Project EXP_SYS...\033[00m"
-	@rm -fr $(OBJ)
 	@rm -fr ./src/.*.swp
 	@cd $(LIB) && $(MAKE) clean
 	@echo "\x1b[31mObject files cleaned.\x1b[0m"
