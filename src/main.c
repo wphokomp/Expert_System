@@ -6,12 +6,22 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:39:46 by lmucassi          #+#    #+#             */
-/*   Updated: 2018/01/22 11:32:32 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/27 23:20:49 by wphokomp         ###   ########.fr       */
 /*   Updated: 2018/01/16 11:46:22 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exp_sys.h"
+
+void	reset(t_shunt *shnt, int h)
+{
+	int		i;
+
+	i = -1;
+	shnt->ch_val[h] = (bool *)malloc(sizeof(bool) * ft_strlen(shnt->no_dups));
+	while (shnt->no_dups[++i])
+		shnt->ch_val[h][i] = false;
+}
 
 void	init(t_shunt *shnt, int i)
 {
@@ -25,13 +35,16 @@ void	init(t_shunt *shnt, int i)
 	shnt->ch = 0;
 	shnt->queue = ft_strnew(ft_strlen(shnt->data[i]));
 	shnt->stack = ft_strnew(ft_strlen(shnt->data[i]));
+	shnt->facts = ft_getfacts(shnt);
+	shnt->ch_val = (bool **)malloc(sizeof(bool) * ft_strlen_point(shnt->facts));
 }
 
 int		main(int argc, char *argv[])
 {
 	t_shunt	shnt;
 	int		fd;
-	
+	int		i;
+
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
@@ -43,7 +56,14 @@ int		main(int argc, char *argv[])
 				get_err(FILE_ERR);
 				exit(1);
 			}
-			get_polish(&shnt);
+			get_polish(&shnt, shnt.data);
+			i = -1;
+			while (shnt.facts[++i])
+				reset(&shnt, i);
+			store_val(&shnt);
+			//i = -1;
+			//while (shnt.polish[++i])
+			//	ft_putendl(shnt.polish[i]);
 			process(&shnt);
 		}
 		else

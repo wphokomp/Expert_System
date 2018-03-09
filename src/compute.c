@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 08:54:03 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/22 17:17:03 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/03/09 19:52:05 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int		op_indx(char *op)
 	return (0);
 }
 
-bool	compute(bool a, bool b, char op)
+bool	compute(bool a, bool b, char op, int *call)
 {
+	*call = 1;
 	if (op == '+')
 		return (a & b);
 	else if (op == '|')
@@ -34,100 +35,75 @@ bool	compute(bool a, bool b, char op)
 	else 
 		return (false);
 }
-/*
-int		change_impl(t_shunt *shnt, bool res, int indx, int facts)
+
+int		op_type(char *rhs)
+{
+	int		i;
+
+	i = -1;
+	while (rhs[++i]){
+		if (rhs[i] == '+')
+			return (1);
+		else if (rhs[i] == '|')
+			return (2);
+		else if (rhs[i] == '!')
+			return (3);
+	}
+	return (0);
+}
+
+int		change_impl(t_shunt *shnt, int fact, int indx, bool res)
 {
 	int		j;
-	int		chr_indx;
 	int		ischange;
 
 	ischange = 0;
 	j = -1;
-	chr_indx = 0;
-	res = true;
-	while (shnt->right[indx][++j])
+	if (ft_strlen(shnt->right[indx]) == 1)
 	{
-		chr_indx = ft_strchr_indx(shnt->no_dups, shnt->right[indx][j]);
-		ft_putchar(shnt->no_dups[chr_indx]);
-		if (ft_isalpha(shnt->right[indx][j]))
-		{
-			ft_putchar(shnt->right[indx][j]);
-			if (shnt->ch_val[facts][chr_indx])
-				ft_putendl("true");
-			else
-				ft_putendl("false");
+		if (res != shnt->ch_val[fact][ft_strchr_indx(shnt->no_dups
+					, shnt->right[indx][0])]){
+			shnt->ch_val[fact][ft_strchr_indx(shnt->no_dups
+					, shnt->right[indx][0])] = res;
+			ischange = 1;
+		}
+	}
+	else if (ft_strlen(shnt->right[indx]) == 2)
+		shnt->ch_val[fact][ft_strchr_indx(shnt->no_dups
+					, shnt->right[indx][0])] = !res;
+	else{
+		if (op_type(shnt->right[indx]) == 1){
+			while (shnt->right[indx][++j]){
+				shnt->ch_val[fact][ft_strchr_indx(shnt->no_dups
+						, shnt->right[indx][j])] = res;
+				//ft_putchar(shnt->right[indx][j]);
+			}
+		}
+		else if (op_type(shnt->right[indx]) == 2){
+			while (ft_isalpha(shnt->right[indx][++j])){
+				if (ft_isalpha(shnt->right[indx][j])){
+					shnt->ch_val[fact][ft_strchr_indx(shnt->no_dups
+							, shnt->right[indx][j])] = !res;
+				}
+			}
 		}
 	}
 	return (ischange);
 }
-*/
+
 void	process(t_shunt *shnt)
 {
-	int		i;
-	int		k;
-	int		op_pos;
-	int		f;
-	int		tmp;
-	bool	res;
+	int		ischange;
+	int		re = 0;
 
-	f = -1;
-	shnt->facts = ft_getfacts(shnt);
-	res = false;
-	while (shnt->facts[++f])
-	{
-		tmp = -1;
-		ft_putendl("\n====================");
-		i = -1;
-		k = 0;
-		while (shnt->polish[++i])
-		{
-			shnt->st = 0;
-			k = op_pos = op_indx(shnt->polish[i]);
-			if (!op_pos)
-			{
-				res = shnt->ch_val[f][ft_strchr_indx(shnt->no_dups
-						, shnt->polish[i][op_pos])];
-			}
-			while (op_pos < (int)ft_strlen(shnt->polish[i]) && op_pos > 0)
-			{
-				if (!shnt->st){
-					shnt->A = shnt->ch_val[f][ft_strchr_indx(shnt->no_dups
-							, shnt->polish[i][--k])];
-				}
-				else{
-					shnt->A = res;
-				}/*
-					if (shnt->A)
-					ft_putendl("ev A: true");
-					else
-					ft_putendl("ev A: false");
-					*/	
-				shnt->B = shnt->ch_val[f][ft_strchr_indx(shnt->no_dups
-						, shnt->polish[i][--k])];
-				/*
-				   if (shnt->B)
-				   ft_putendl("ev B: true");
-				   else
-				   ft_putendl("ev B: false");
-				   */
-				if (shnt->polish[i][op_pos] == '!')
-				{
-					shnt->A = !shnt->A;
-					op_pos++;
-				}
-				res = compute(shnt->A, shnt->B, shnt->polish[i][op_pos]);
-				//Call function change_impl(t_shunt *shnt, bool)	
-				op_pos++;
-				shnt->st++;
-			}
-			//tmp = change_impl(shnt, res, i, f);
-			if (res)
-				ft_putendl("res is true");
-			else
-				ft_putendl("res is false");
-		}
-		//ft_putnbrendl(tmp);
-		//if (f == ft_strlen_point(shnt->facts) && tmp == 1)
-		//	f = -1;
-	}
+	shnt->que = 1;
+	// while (shnt->facts[++shnt->que])
+	// {
+		shnt->st = 1;
+		re = 0;
+		ischange = 0;
+		//ft_putstr(shnt->facts[shnt->que]);
+		//ft_putendl("============");
+		autonom(shnt);
+	// }
 }

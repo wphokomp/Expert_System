@@ -6,7 +6,7 @@
 /*   By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 03:40:43 by wphokomp          #+#    #+#             */
-/*   Updated: 2018/01/22 15:07:33 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/26 00:05:49 by wphokomp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int		ft_isop(char op)
 	return (0);
 }
 
-int		get_exp(t_shunt *shnt)
+int		get_exp(t_shunt *shnt, char **data)
 {
 	int		i;
 
 	i = -1;
-	while (shnt->data[++i])
+	while (data[++i])
 	{
 		if (!ft_chrcmp(shnt->data[i][0], '='))
 			break ;
