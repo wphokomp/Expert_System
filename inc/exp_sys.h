@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:04:24 by lmucassi          #+#    #+#             */
 /*   Updated: 2018/03/09 19:06:55 by wphokomp         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:08:04 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +55,7 @@ int				change_impl(t_shunt *shnt, int fact, int indx, bool res);
 
 char			**ft_getfacts(t_shunt *shnt);
 
+<<<<<<< HEAD
 void			ft_getquery(t_shunt *shnt);
 void			get_right(t_shunt *shnt);
 void			tokens(t_shunt *shnt);
@@ -69,5 +71,12 @@ void			is_dup(t_shunt *shnt);
 void			process(t_shunt *shnt);
 void			push_into(t_shunt *shnt, int i);
 void			autonom(t_shunt *shnt);
+=======
+void				init(t_shunt *shnt, int i);
+void				is_dup(t_shunt *shnt);
+void				process(t_shunt *shnt);
+void				push_into(t_shunt *shnt, int i);
+void				final(t_shunt *shnt);
+>>>>>>> ad371e731e54cbf410747b87a3fdd01e45b3b94c
 
 #endif
