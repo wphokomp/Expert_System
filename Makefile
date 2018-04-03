@@ -15,7 +15,7 @@ NAME	= expert_system
 
 HEAD	= ./inc/
 
-INC		= I $(HEAD)
+INC		= $(HEAD)
 
 SRC_P	= ./src/
 
@@ -53,13 +53,13 @@ $(NAME):
 clean:
 	@echo "\033[31mCleaning Project EXP_SYS...\033[00m"
 	@rm -fr ./src/.*.swp
-	@cd $(LIB) && $(MAKE) clean
+	@cd libft/ && $(MAKE) clean
 	@echo "\x1b[31mObject files cleaned.\x1b[0m"
 
 fclean: clean
 	@echo "\033[31mCleaning Everythin...\033[00m"
 	@rm -fr $(NAME)
-	@cd $(LIB) && $(MAKE) fclean
+	@cd libft/ && $(MAKE) fclean
 	@echo "\x1b[31mEverything cleaned.\x1b[0m"
 
 re: fclean all

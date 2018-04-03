@@ -94,15 +94,15 @@ int		change_impl(t_shunt *shnt, int fact, int indx, bool res)
 
 void	process(t_shunt *shnt)
 {
-	int		ischange;
-	int		re = 0;
+	// int		ischange;
+	// int		re = 0;
 
-	shnt->que = 1;
+	shnt->que = 0; //Fact
 	// while (shnt->facts[++shnt->que])
 	// {
-		shnt->st = 1;
-		re = 0;
-		ischange = 0;
+		shnt->st = -1; //Expression
+		// re = 0;
+		// ischange = 0;
 		//ft_putstr(shnt->facts[shnt->que]);
 		//ft_putendl("============");
 		autonom(shnt);

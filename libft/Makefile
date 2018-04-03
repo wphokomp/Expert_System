@@ -42,7 +42,7 @@ all: $(NAME)
 
 $(NAME):
 	@echo "\033[32mCOMPILING...\033[00M"
-	@$(CC) -c $(CFLAGS) -I $(INC) $(SRC)
+	@$(CC) -c $(CFLAGS) $(INC) $(SRC)
 	@echo "\033[32mCreating Objects...\033[00m"
 	@ar -rc $(NAME) $(OBJ)
 	@echo "\033[32mCreating Static Library libft.a\033[00m"

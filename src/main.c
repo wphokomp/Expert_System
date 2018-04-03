@@ -6,11 +6,8 @@
 /*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 14:39:46 by lmucassi          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2018/01/27 23:20:49 by wphokomp         ###   ########.fr       */
-=======
 /*   Updated: 2018/01/23 16:07:14 by lmucassi         ###   ########.fr       */
->>>>>>> ad371e731e54cbf410747b87a3fdd01e45b3b94c
 /*   Updated: 2018/01/16 11:46:22 by lmucassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -60,7 +57,6 @@ int		main(int argc, char *argv[])
 				get_err(FILE_ERR);
 				exit(1);
 			}
-<<<<<<< HEAD
 			get_polish(&shnt, shnt.data);
 			i = -1;
 			while (shnt.facts[++i])
@@ -70,11 +66,9 @@ int		main(int argc, char *argv[])
 			//while (shnt.polish[++i])
 			//	ft_putendl(shnt.polish[i]);
 			process(&shnt);
-=======
-			get_polish(&shnt);
-			final(&shnt);
+			get_polish(&shnt, shnt.data);
+			//final(&shnt);
 		//	process(&shnt);
->>>>>>> ad371e731e54cbf410747b87a3fdd01e45b3b94c
 		}
 		else
 		{
