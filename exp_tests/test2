@@ -1,9 +1,9 @@
-B => A
+B | C + D => A
 D + E => B
 G + H => F
 I ^ J => G
 G => H
-L + M => K
+L | M + D => K
 O + P => L + N
 N => M
 
