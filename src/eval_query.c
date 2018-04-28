@@ -50,9 +50,9 @@ void	get_right(t_shunt *shnt)
 
 void	rev_polish(char c, t_shunt *shnt)
 {
+	do_brack(shnt, c);
 	add_op(c, shnt);
 	shnt->st_len = ft_strlen(shnt->stack);
-	do_brack(shnt, c);
 }
 
 int		exp_len(char *str)
@@ -75,7 +75,7 @@ void	get_polish(t_shunt *shnt, char **data)
 
 	i = 0;
 	shnt->polish = ft_listnew(get_exp(shnt, data));
-	while (ft_chrcmp(data[i][0], '=') != 0 && data[i][0] != '?')
+	while (ft_chrcmp(data[i][0], '=') != 0)
 	{
 		cnt = 0;
 		init(shnt, i);

@@ -62,13 +62,10 @@ int		main(int argc, char *argv[])
 			while (shnt.facts[++i])
 				reset(&shnt, i);
 			store_val(&shnt);
-			//i = -1;
-			//while (shnt.polish[++i])
-			//	ft_putendl(shnt.polish[i]);
-			process(&shnt);
-			get_polish(&shnt, shnt.data);
-			//final(&shnt);
-		//	process(&shnt);
+			int	i = -1;
+			while (shnt.data[++i])
+				ft_putendl(shnt.data[i]);
+			// process(&shnt);
 		}
 		else
 		{
