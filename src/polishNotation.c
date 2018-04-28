@@ -21,7 +21,7 @@ void    checkBrackets(t_shunting *shunting, int outQ, char token) {
     }
 }
 
-void    popFromStackToQueue(t_shunting *shunting) {
+void    popFromStackToQueue(t_shunting *shunting, int expression_count) {
     int     stackLen;
     int     outQ;
 
@@ -32,10 +32,14 @@ void    popFromStackToQueue(t_shunting *shunting) {
         shunting->stack[stackLen] = '\0';
         outQ++;
     }
-    ft_putendl(shunting->queue);
-    ft_putstr(shunting->stack);
-    free(shunting->stack);
-    free(shunting->queue);
+    shunting->revExpressions[expression_count] = ft_strdup(shunting->queue);
+    //WORRIED ABOUT MEMORY LEAKS
+    //WITH FREE, 'test1' COMPLAINS ABOUT DOUBLE FREE
+    // if (shunting->stack) {
+    //     free(shunting->stack);
+    // }
+    // if (shunting->queue)
+    //     free(shunting->queue);
 }
 
 void    polishNotation(t_shunting *shunting) {
@@ -48,6 +52,7 @@ void    polishNotation(t_shunting *shunting) {
     while (shunting->expressions[++expression_count]) {
         i = -1;
         outQ = -1;
+        shunting->revExpressions[expression_count] = ft_strnew(ft_strlen(shunting->expressions[expression_count]));
         shunting->stack = ft_strnew(ft_strlen(shunting->expressions[expression_count]));
         shunting->queue = ft_strnew(ft_strlen(shunting->expressions[expression_count]));
         //(B+C)|!F
@@ -88,6 +93,6 @@ void    polishNotation(t_shunting *shunting) {
             }
         }
         // ft_putendl(shunting->queue);
-        popFromStackToQueue(shunting);
+        popFromStackToQueue(shunting, expression_count);
     }
 }
