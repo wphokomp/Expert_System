@@ -20,6 +20,7 @@ int     main(int argc, char **argv) {
         fd = open(argv[1], O_RDONLY);
         if (fd > 0) {
             getData(fd, argv[1], &shunting); //This is fine
+            ft_putendl("=");
             getExpressions(&shunting); //This is fine
             shunting.revExpressions = ft_strnew_point(
                 ft_strlen_point(shunting.expressions));
