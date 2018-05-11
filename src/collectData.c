@@ -9,6 +9,7 @@ int     getNumberOfValidData(const int fd) {
         if(line[0] != '#')
             ++number;
     }
+    if (number == 0) getError(0);
     return (number);
 }
 
@@ -64,12 +65,14 @@ void    getFacts(t_shunting *shunting) {
 
 void    getExpressions(t_shunting *shunting) {
     int     i;
+    int     c;
     int     counter;
 
+    c = 0;
     i = -1;
-    while (shunting->data[++i][0] != '=');
-    shunting->expressions = ft_strnew_point(i);
-    i = -1;
+    //SEGFAULT ON TEST 5
+    if (!(shunting->expressions = ft_strnew_point(i)))
+        return ;
     while (shunting->data[++i][0] != '=') {
         counter = -1;
         while (shunting->data[i][++counter] != '<' && 
