@@ -11,6 +11,9 @@
 #   define FORMAT_ERROR 2
 #   define FILE_ERROR 1
 
+# define NO_OF_CHARS 256
+# define bool int
+
 typedef struct  s_shunting
 {
     char    **data;

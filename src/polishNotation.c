@@ -57,35 +57,49 @@ void    getExpressions(char **data) {
 
 char    *getBoolValues(char **data) {
   int   i;
+  int   x;
+  int   y;
   char *noDup = (char *) malloc(10 * sizeof (char));
+
   if (noDup == NULL) {
       /* Memory could not be allocated, the program should
          handle the error here as appropriate. */
   } else {
       /* Allocation succeeded.  Do something.  */
-
         i = -1;
-        // shunting->_expression = ft_strnew_point(ft_strlen_point(data));
+        x = 0;
+        y = 0;
         while (data[++i]) {
           // j = -1;
           if (data[i][0] != '=') {
-              if (data[i][0] != '?'){
-                  // shunting->_expression[++j] = ft_strnew(ft_strlen(data[i]));
-                  
+              if (data[i][0] != '?') {
+                if (ft_isalpha(data[i][x]) {
+                  noDup[y] = data[i][x];
+                  y++;
+                }
               }
           }
+          x++;
       }
-
-      free(noDup);  /* We are done with the int objects, and
-                     free the associated pointer. */
-      noDup = NULL; /* The pointed-to-data  must not be used again,
-                     unless re-assigned by using malloc
-                     again. */
   }
-  // int     j;
-
-  return noDupl;
+  return removeDups(noDupl);
 }
-=======
+
+char  *removeDups(char *str) {
+  bool bin_hash[NO_OF_CHARS] = {0};
+  int ip_ind = 0, res_ind = 0;
+  char temp;
+
+  /* In place removal of duplicate characters*/
+  while (*(str + ip_ind))
+  {
+  	temp = *(str + ip_ind);
+  	if (bin_hash[temp] == 0)
+  	{
+  		bin_hash[temp] = 1;
+  		*(str + res_ind) = *(str + ip_ind);
+  		res_ind++;
+  	}
+  	ip_ind++;
 }
 >>>>>>> 45007735a6600b3b6e97514b816926c8f26659ea
