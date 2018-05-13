@@ -1,5 +1,56 @@
 #include "../inc/exp_sys.h"
 
+char  *removeDups(char *str) {
+  bool *bin_hash;
+  int ip_ind = 0, res_ind = 0;
+  char temp;
+
+  bin_hash = (bool *) malloc(NO_OF_CHARS * sizeof(bool));
+  /* In place removal of duplicate characters*/
+  while (*(str + ip_ind))
+  {
+  	temp = *(str + ip_ind);
+  	if (bin_hash[temp] == 0)
+  	{
+  		bin_hash[temp] = 1;
+  		*(str + res_ind) = *(str + ip_ind);
+  		res_ind++;
+  	}
+  	ip_ind++;
+}
+}
+
+char    *getBoolValues(char **data) {
+  int   i;
+  int   x;
+  int   y;
+  char *noDup;
+
+  if (!(noDup = (char *) malloc(10 * sizeof (char)))) {
+      /* Memory could not be allocated, the program should
+         handle the error here as appropriate. */
+  } else {
+      /* Allocation succeeded.  Do something.  */
+        i = -1;
+        x = 0;
+        y = 0;
+        while (data[++i]) {
+          // j = -1;
+          if (data[i][0] != '=') {
+              if (data[i][0] != '?') {
+                if (ft_isalpha(data[i][x])) {
+                  noDup[y] = data[i][x];
+                  y++;
+                }
+              }
+          }
+          x++;
+      }
+  }
+  ft_putendl(noDup);
+  return removeDups(noDup);
+}
+
 void    convertToPostfix(char *data) {
     int i;
     char token;
@@ -30,11 +81,12 @@ void    convertToPostfix(char *data) {
         }
     }
     while (op(token = pop(stack))) { push(queue, token); }
-    // values = getValues(queue);
-    while (ft_isalpha(token = pop(queue)) || op(token)) {
-         ft_putchar(token);
-     }
-    ft_putchar('\n');
+    // // values = getValues(queue);
+    // while (ft_isalpha(token = pop(queue)) || op(token)) {
+    //      ft_putchar(token);
+    //  }
+    // ft_putchar('\n');
+    getBoolValues(data);
 }
 
 void    getExpressions(char **data) {
@@ -48,58 +100,8 @@ void    getExpressions(char **data) {
             }
         }
     }
-<<<<<<< HEAD
     // i = -1;
     // while (shunting->_expression[++i]) {
     //     ft_putendl(shunting->_expression[i]);
     // }
 }
-
-char    *getBoolValues(char **data) {
-  int   i;
-  int   x;
-  int   y;
-  char *noDup = (char *) malloc(10 * sizeof (char));
-
-  if (noDup == NULL) {
-      /* Memory could not be allocated, the program should
-         handle the error here as appropriate. */
-  } else {
-      /* Allocation succeeded.  Do something.  */
-        i = -1;
-        x = 0;
-        y = 0;
-        while (data[++i]) {
-          // j = -1;
-          if (data[i][0] != '=') {
-              if (data[i][0] != '?') {
-                if (ft_isalpha(data[i][x]) {
-                  noDup[y] = data[i][x];
-                  y++;
-                }
-              }
-          }
-          x++;
-      }
-  }
-  return removeDups(noDupl);
-}
-
-char  *removeDups(char *str) {
-  bool bin_hash[NO_OF_CHARS] = {0};
-  int ip_ind = 0, res_ind = 0;
-  char temp;
-
-  /* In place removal of duplicate characters*/
-  while (*(str + ip_ind))
-  {
-  	temp = *(str + ip_ind);
-  	if (bin_hash[temp] == 0)
-  	{
-  		bin_hash[temp] = 1;
-  		*(str + res_ind) = *(str + ip_ind);
-  		res_ind++;
-  	}
-  	ip_ind++;
-}
->>>>>>> 45007735a6600b3b6e97514b816926c8f26659ea
