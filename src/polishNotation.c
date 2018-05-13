@@ -1,98 +1,59 @@
 #include "../inc/exp_sys.h"
 
-void    checkBrackets(t_shunting *shunting, int outQ, char token) {
-    int     stackLen;
+void    convertToPostfix(char *data) {
+    int i;
+    char token;
+    // struct Stack *values;
+    struct Stack *queue;
+    struct Stack *stack;
 
-    stackLen = 0;
-    if (token == '(') { //CHECK IF THERE ARE ANY BRACKETS
-        shunting->stack[stackLen] = '(';
-    } else if (token == ')') {
-        stackLen = ft_strlen(shunting->stack);
-        while (--stackLen >= 0){
-            //WHILE THERE'S NO OPENING BRACKET, POP FROM STACK TO QUEUE
-            if (shunting->stack[stackLen] != '(') {
-                shunting->queue[++outQ] = shunting->stack[stackLen];
-                shunting->stack[stackLen] = '\0';
-            } else {
-                shunting->stack[stackLen] = '\0';
+    i = -1;
+    queue = createStack(ft_strlen(data));
+    stack = createStack(ft_strlen(data));
+    while (data[++i]) {
+        if (ft_isalpha(data[i])) {
+            push(queue, data[i]);
+        } else if (op(data[i])) {
+            if (op(lastItem(stack))) {
+                if (opPrecedence(lastItem(stack), data[i])) {
+                    push(queue, pop(stack));
+                }
             }
+            push(stack, data[i]);
+        } else if (data[i] == '(') {
+            push(stack, data[i]);
+        } else if (data[i] == ')') {
+            while (lastItem(stack) != '(') {
+                push(queue, pop(stack));
+            }
+            pop(stack);
         }
-        //????CAN'T SEE THE PLUS! WHERE IS MY PLUS???
     }
-}
-
-void    popFromStackToQueue(t_shunting *shunting, int expression_count) {
-    int     stackLen;
-    int     outQ;
-
-    stackLen = ft_strlen(shunting->stack);
-    outQ = ft_strlen(shunting->queue);
-    while (--stackLen >= 0) {
-        shunting->queue[outQ] = shunting->stack[stackLen];
-        shunting->stack[stackLen] = '\0';
-        outQ++;
-    }
-    shunting->revExpressions[expression_count] = ft_strdup(shunting->queue);
-    //WORRIED ABOUT MEMORY LEAKS
-    //WITH FREE, 'test1' COMPLAINS ABOUT DOUBLE FREE
-    // if (shunting->stack) {
-    //     free(shunting->stack);
+    while (op(token = pop(stack))) { push(queue, token); }
+    // values = getValues(queue);
+    // while (ft_isalpha(token = pop(queue)) || op(token)) {
+    //     ft_putchar(token);
     // }
-    // if (shunting->queue)
-    //     free(shunting->queue);
+    // ft_putchar('\n');
 }
 
-void    polishNotation(t_shunting *shunting) {
+void    getExpressions(char **data) {
     int     i;
-    int     outQ;
-    int     stackLen;
-    int     expression_count;
+    // int     j;
 
-    expression_count = -1;
-    while (shunting->expressions[++expression_count]) {
-        i = -1;
-        outQ = -1;
-        shunting->revExpressions[expression_count] = ft_strnew(ft_strlen(shunting->expressions[expression_count]));
-        shunting->stack = ft_strnew(ft_strlen(shunting->expressions[expression_count]));
-        shunting->queue = ft_strnew(ft_strlen(shunting->expressions[expression_count]));
-        //(B+C)|!F
-        while (shunting->expressions[expression_count][++i] != '\0') {
-            if (ft_isalpha(shunting->expressions[expression_count][i])) { //IF IT'S A VALUE, ADD IT TO THE QUEUE
-                shunting->queue[++outQ] = shunting->expressions[expression_count][i];
-            } else if (op(shunting->expressions[expression_count][i])) { 
-                stackLen = ft_strlen(shunting->stack);
-                while (--stackLen >= 0) { //IF OPERATOR, CHECK IF ANY OF THE ONES ON THE STACK HAVE HIGHER PRECEDENCE
-                    if (opPrecedence(shunting->expressions[expression_count][i]) > 
-                    opPrecedence(shunting->stack[stackLen]) 
-                    && shunting->stack[stackLen] != '(' && shunting->stack[stackLen] != ')') {
-                        shunting->queue[++outQ] = shunting->stack[stackLen];
-                        shunting->stack[stackLen] = '\0';
-                    } else {
-                        break;
-                    }
-                }
-                //PUSH THE CURRENT OPERATOR INTO THE STACK
-                shunting->stack[ft_strlen(shunting->stack)] = shunting->expressions[expression_count][i];
-            } else {
-                if (shunting->expressions[expression_count][i] == '(') { //CHECK IF THERE ARE ANY BRACKETS
-                    shunting->stack[stackLen] = '(';
-                } else if (shunting->expressions[expression_count][i] == ')') {
-                    stackLen = ft_strlen(shunting->stack);
-                    while (--stackLen >= 0){
-                        //WHILE THERE'S NO OPENING BRACKET, POP FROM STACK TO QUEUE
-                        if (shunting->stack[stackLen] != '(') {
-                            shunting->queue[++outQ] = shunting->stack[stackLen];
-                            shunting->stack[stackLen] = '\0';
-                        } else {
-                            shunting->stack[stackLen] = '\0';
-                        }
-                    }
-                    //????CAN'T SEE THE PLUS! WHERE IS MY PLUS???
-                }
-                // checkBrackets(shunting, outQ, shunting->expressions[0][i]);
+    i = -1;
+    // shunting->_expression = ft_strnew_point(ft_strlen_point(data));
+    while (data[++i]) {
+        // j = -1;
+        if (data[i][0] != '=') {
+            if (data[i][0] != '?'){
+                // shunting->_expression[++j] = ft_strnew(ft_strlen(data[i]));
+                convertToPostfix(ft_strsub(data[i], 0, ft_strchr_indx(data[i], '=')));
             }
         }
-        // ft_putendl(shunting->queue);
-        popFromStackToQueue(shunting, expression_count);
     }
+    // i = -1;
+    // while (shunting->_expression[++i]) {
+    //     ft_putendl(shunting->_expression[i]);
+    // }
 }

@@ -1,12 +1,8 @@
 #include "libft.h"
 
-int     opPrecedence(char op) {
-    int     i;
-
-    i = -1;
-    while (OP[++i]) {
-        if  (OP[i] == op)
-            break ;
+int     opPrecedence(char current_op, char new_op) {
+    if (ft_strchr_indx(OP, current_op) > ft_strchr_indx(OP, new_op)) {
+        return (1);
     }
-    return (i);
+    return (0);
 }

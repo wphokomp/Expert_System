@@ -19,7 +19,7 @@
 # include <stdarg.h>
 # include <fcntl.h>
 
-# define OP "+^|!"
+# define OP "!|^+"
 # define BUFF_SIZE 32
 # define MAX_FD 2560
 
@@ -60,7 +60,7 @@ int		ft_restart_file(int fd, char *file);
 int		ft_list_del_el(char **lisr, char *str);
 int		ft_atoi(const char *str);
 int		op(char op);
-int		opPrecedence(char op);
+int		opPrecedence(char current_op, char new_op);
 int		ft_isbrac(char ch);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
