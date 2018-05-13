@@ -42,6 +42,7 @@ void pushBool(struct Stack *stack, bool item);
 bool popBool(struct Stack *stack);
 char lastItem(struct Stack *stack);
 
+bool calculate(bool op1, bool op2, char operator);
 void    separate(struct Stack *queue, t_shunting *shunting, char *data);
 void getValues(char **data, t_shunting *shunting);
 void getFacts(t_shunting *shunting);
