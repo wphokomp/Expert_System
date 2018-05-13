@@ -22,6 +22,8 @@ typedef struct  s_shunting
     char    **queries;
     bool    **booleanVal;
     int     factIndx;
+    char    *rightOp;
+
 }               t_shunting;
 
 struct Stack
@@ -41,6 +43,9 @@ char pop(struct Stack *stack);
 void pushBool(struct Stack *stack, bool item);
 bool popBool(struct Stack *stack);
 char lastItem(struct Stack *stack);
+
+void getRightOp(char **data, t_shunting *shunting);
+void removeDupli(char *ch, t_shunting *shunting);
 
 void    separate(struct Stack *queue, t_shunting *shunting, char *data);
 void getValues(char **data, t_shunting *shunting);

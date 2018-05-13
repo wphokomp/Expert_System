@@ -53,6 +53,7 @@ int     main(int argc, char **argv) {
             getData(fd, argv[1], &shunting);
             getFacts(&shunting);
             getValues(shunting.data, &shunting);
+            getRightOp(shunting.data, &shunting);
             shunting.factIndx = -1;
             while (shunting.facts[++shunting.factIndx]) {
                 shunting.booleanVal = booleanValue(&shunting);
