@@ -17,11 +17,11 @@ typedef struct  s_shunting
 {
     char    **data;
     char    **_expression;
-    char    **revExpressions;
     char    **facts;
     char    *operands;
     char    **queries;
-
+    bool    **booleanVal;
+    int     factIndx;
 }               t_shunting;
 
 struct Stack
@@ -29,16 +29,20 @@ struct Stack
     int top;
     unsigned capacity;
     char *array;
+    bool *boolArr;
 };
 
 struct Stack *createStack(unsigned cap);
-struct Stack **create2DStack(unsigned cap);
+struct Stack *createBoolStack(unsigned cap);
 int isFull(struct Stack* stack);
 int isEmpty(struct Stack *stack);
 void push(struct Stack *stack, char item);
 char pop(struct Stack *stack);
+void pushBool(struct Stack *stack, bool item);
+bool popBool(struct Stack *stack);
 char lastItem(struct Stack *stack);
 
+void    separate(struct Stack *queue, t_shunting *shunting, char *data);
 void getValues(char **data, t_shunting *shunting);
 void getFacts(t_shunting *shunting);
 void getData(int fd, char *fileName, t_shunting *shunting);

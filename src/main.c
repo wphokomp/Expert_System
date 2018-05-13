@@ -19,35 +19,28 @@ void    getQueries(t_shunting *shunting) {
     }
 }
 
-void booleanValue(t_shunting *shunting) {
+bool **booleanValue(t_shunting *shunting) {
     int i;
     int k;
-    int l;
-    bool **boolVal;
+    int f;
+    bool **boolValue;
 
     i = -1;
-    boolVal = (bool **) malloc(ft_strlen_point(shunting->facts) * sizeof(bool));
+    boolValue = (bool **) malloc(ft_strlen_point(shunting->facts) * sizeof(bool));
     while (shunting->facts[++i]) {
         k = -1;
-        l = -1;
-        boolVal[i] = (bool *)malloc(ft_strlen(shunting->operands) * sizeof(bool));
+        f = 0;
+        boolValue[i] = (bool *)malloc(ft_strlen(shunting->operands) * sizeof(bool));
         while (shunting->operands[++k]) {
-            if (shunting->facts[i][+l] == shunting->operands[k]) {
-                boolVal[i][k] = true;
+            if (shunting->operands[k] == shunting->facts[i][f]) {
+                boolValue[i][k] = true;
+                f++;
             } else {
-                boolVal[i][k] = false;
+                boolValue[i][k] = false;
             }
         }
     }
-    k = 0;
-    i = 0;
-    while (boolVal[k][i] != '\0') {
-        while (boolVal[k][i] != '\0') {
-            ft_putnbr(boolVal[k][i]);
-            i++;
-        }
-        k++;
-    }
+    return (boolValue);
 }
 
 int     main(int argc, char **argv) {
@@ -58,9 +51,14 @@ int     main(int argc, char **argv) {
         fd = open(argv[1], O_RDONLY);
         if (fd > 0) {
             getData(fd, argv[1], &shunting);
-            getExpressions(shunting.data, &shunting);
             getFacts(&shunting);
-            booleanValue(&shunting);
+            getValues(shunting.data, &shunting);
+            shunting.factIndx = -1;
+            while (shunting.facts[++shunting.factIndx]) {
+                shunting.booleanVal = booleanValue(&shunting);
+                getExpressions(shunting.data, &shunting);
+                break ;
+            }
         }
         else
             getError(FILE_ERROR);

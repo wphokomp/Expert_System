@@ -9,6 +9,14 @@ struct Stack *createStack(unsigned cap) {
     return stack;
 }
 
+struct Stack *createBoolStack(unsigned cap) {
+    struct Stack *stack = (struct Stack *)malloc(sizeof(struct Stack));
+    stack->capacity = cap;
+    stack->top = -1;
+    stack->boolArr = (bool *)malloc(stack->capacity * sizeof(bool));
+    return stack;
+}
+
 int     isFull(struct Stack* stack) {
     return (unsigned)stack->top == stack->capacity - 1;
 }
@@ -32,4 +40,15 @@ char    pop(struct Stack *stack) {
     if (isEmpty(stack))
         return CHAR_MIN;
     return (stack->array[stack->top--]);
+}
+
+void pushBool(struct Stack *stack, bool item) {
+    if (isFull(stack)) return ;
+    stack->boolArr[++stack->top] = item;
+}
+
+bool    popBool(struct Stack *stack) {
+    if (isEmpty(stack))
+        return CHAR_MIN;
+    return (stack->boolArr[stack->top--]);
 }

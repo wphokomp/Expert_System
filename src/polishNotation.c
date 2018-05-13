@@ -40,7 +40,7 @@ void getValues(char **data, t_shunting *shunting) {
     removeDuplicates(ch, shunting);
 }
 
-void    convertToPostfix(char *data) {
+void    convertToPostfix(char *data, t_shunting *shunting) {
     int i;
     char token;
     struct Stack *queue;
@@ -69,6 +69,7 @@ void    convertToPostfix(char *data) {
         }
     }
     while (op(token = pop(stack))) { push(queue, token); }
+    separate(queue, shunting, data);
 }
 
 void    getExpressions(char **data, t_shunting *shunting) {
@@ -78,7 +79,7 @@ void    getExpressions(char **data, t_shunting *shunting) {
     while (data[++i]) {
         if (data[i][0] != '=') {
             if (data[i][0] != '?'){
-                convertToPostfix(ft_strsub(data[i], 0, ft_strchr_indx(data[i], '=')));
+                convertToPostfix(ft_strsub(data[i], 0, ft_strchr_indx(data[i], '=')), shunting);
             }
         }
     }

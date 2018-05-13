@@ -43,7 +43,7 @@ void getFacts(t_shunting *shunting) {
     counter = 0;
     while (shunting->data[++i]) {
         if (shunting->data[i][0] == '=') {
-            counter++;
+            ++counter;
         }
     }
     shunting->facts = ft_strnew_point(counter);

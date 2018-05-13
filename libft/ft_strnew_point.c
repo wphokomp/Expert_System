@@ -17,6 +17,6 @@ char	**ft_strnew_point(size_t size)
 	char	**ret;
 
 	ret = (char **)malloc(sizeof(char *) * (size + 1));
-	ret[size + 1] = 0;
+	ret[size] = 0;
 	return (ret);
 }
