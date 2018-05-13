@@ -19,6 +19,7 @@ typedef struct  s_shunting
     char    **_expression;
     char    **revExpressions;
     char    **facts;
+    char    *operands;
     char    **queries;
 
 }               t_shunting;
@@ -38,10 +39,10 @@ void push(struct Stack *stack, char item);
 char pop(struct Stack *stack);
 char lastItem(struct Stack *stack);
 
-struct Stack *getValues(struct Stack *queue);
+void getValues(char **data, t_shunting *shunting);
 void getFacts(t_shunting *shunting);
 void getData(int fd, char *fileName, t_shunting *shunting);
-void getExpressions(char **data);
+void getExpressions(char **data, t_shunting *shunting);
 void getError(int error);
 void getQueries(t_shunting *shunting);
 void polishNotation(t_shunting *shunting);

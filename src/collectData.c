@@ -55,6 +55,3 @@ void getFacts(t_shunting *shunting) {
         }
     }
 }
-// struct Stack *getValues(struct Stack *queue) {
-
-// }
