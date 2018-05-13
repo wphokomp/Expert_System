@@ -35,13 +35,23 @@ void    getData(int fd, char *fileName, t_shunting *shunting)
     }
 }
 
-void getFacts(char **data) {
+void getFacts(t_shunting *shunting) {
     int i;
+    int counter;
 
     i = -1;
-    while (data[++i]) {
-        if (data[i][0] == '=') {
-            ft_putendl(data[i]);
+    counter = 0;
+    while (shunting->data[++i]) {
+        if (shunting->data[i][0] == '=') {
+            counter++;
+        }
+    }
+    shunting->facts = ft_strnew_point(counter);
+    i = -1;
+    counter = -1;
+    while (shunting->data[++i]) {
+        if (shunting->data[i][0] == '=') {
+            shunting->facts[++counter] = ft_strdup(shunting->data[i] + 1);
         }
     }
 }

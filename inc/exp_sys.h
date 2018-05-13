@@ -37,7 +37,7 @@ char pop(struct Stack *stack);
 char lastItem(struct Stack *stack);
 
 struct Stack *getValues(struct Stack *queue);
-void getFacts(char **data);
+void getFacts(t_shunting *shunting);
 void getData(int fd, char *fileName, t_shunting *shunting);
 void getExpressions(char **data);
 void getError(int error);

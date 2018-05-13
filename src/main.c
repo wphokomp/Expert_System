@@ -28,6 +28,7 @@ int     main(int argc, char **argv) {
         if (fd > 0) {
             getData(fd, argv[1], &shunting);
             getExpressions(shunting.data);
+            getFacts(&shunting);
         }
         else
             getError(FILE_ERROR);
