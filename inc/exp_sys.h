@@ -44,9 +44,13 @@ void pushBool(struct Stack *stack, bool item);
 bool popBool(struct Stack *stack);
 char lastItem(struct Stack *stack);
 
+<<<<<<< HEAD
 void getRightOp(char **data, t_shunting *shunting);
 void removeDupli(char *ch, t_shunting *shunting);
 
+=======
+bool calculate(bool op1, bool op2, char operator);
+>>>>>>> 76ad726ef88c9a7e71b767e5530475139d889787
 void    separate(struct Stack *queue, t_shunting *shunting, char *data);
 void getValues(char **data, t_shunting *shunting);
 void getFacts(t_shunting *shunting);

@@ -1,5 +1,22 @@
 #include "../inc/exp_sys.h"
 
+// void calculateExpression(struct Struct *values, struct Struct *stack) {
+//     bool operand1;
+//     bool operand2;
+
+//     while (!isEmpty(values)) {
+//         if (lastItem(stack) != '!') {
+//             operand1 = popBool(values);
+//             operand2 = popBool(values);
+//             push(value, calculate(operand1, operand2, pop(stack)));
+//         } else if (lastItem(stack) == '!') {
+//             operand1 = popBool(values);
+//             push(value, calculate(operand1, operand2, pop(stack)));
+//         }
+//     }
+//     ft_putnbr(popBool(values));
+// }
+
 void    separate(struct Stack *queue, t_shunting *shunting, char *data) {
     struct Stack *values;
     struct Stack *stack;
@@ -14,7 +31,5 @@ void    separate(struct Stack *queue, t_shunting *shunting, char *data) {
             push(stack, something);
         }
     }
-    // calculateExpression(values, stack, shunting) {
-
-    // }
+    // calculateExpression(values, stack);
 }

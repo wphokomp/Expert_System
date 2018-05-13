@@ -19,7 +19,12 @@ INC		= $(HEAD)
 
 SRC_P	= ./src/
 
+<<<<<<< HEAD
 SRCS	= main.c collectData.c errorHandling.c polishNotation.c stack.c evaluate.c rightOp.c
+=======
+SRCS	= main.c collectData.c errorHandling.c polishNotation.c stack.c \
+			evaluate.c getAnswer.c
+>>>>>>> 76ad726ef88c9a7e71b767e5530475139d889787
 
 SRC		= $(addprefix $(SRC_P), $(SRCS))
 
