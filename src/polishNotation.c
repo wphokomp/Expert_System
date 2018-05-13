@@ -39,19 +39,16 @@ void    convertToPostfix(char *data) {
 
 void    getExpressions(char **data) {
     int     i;
-    // int     j;
 
     i = -1;
-    // shunting->_expression = ft_strnew_point(ft_strlen_point(data));
     while (data[++i]) {
-        // j = -1;
         if (data[i][0] != '=') {
             if (data[i][0] != '?'){
-                // shunting->_expression[++j] = ft_strnew(ft_strlen(data[i]));
                 convertToPostfix(ft_strsub(data[i], 0, ft_strchr_indx(data[i], '=')));
             }
         }
     }
+<<<<<<< HEAD
     // i = -1;
     // while (shunting->_expression[++i]) {
     //     ft_putendl(shunting->_expression[i]);
@@ -89,3 +86,6 @@ char    *getBoolValues(char **data) {
 
   return noDupl;
 }
+=======
+}
+>>>>>>> 45007735a6600b3b6e97514b816926c8f26659ea
