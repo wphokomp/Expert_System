@@ -13,6 +13,21 @@ int     getNumberOfValidData(const int fd) {
     return (number);
 }
 
+void getRightOp(char **data, t_shunting *shunting) {
+    int     i;
+
+    i = -1;
+    shunting->factIndx = -1;
+    shunting->evalExpression = ft_strnew_point(ft_strlen_point(data));
+    while (data[++i]) {
+        if (data[i][0] != '=') {
+            if (data[i][0] != '?') {
+                shunting->evalExpression[i] = ft_strdup(ft_strsub(data[i], ft_strchr_indx(data[i], '>') + 1, ft_strlen(data[i])));
+            }
+        }
+    }
+}
+
 void    getData(int fd, char *fileName, t_shunting *shunting)
 {
     char    *line;

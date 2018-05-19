@@ -10,4 +10,5 @@ bool calculate(bool op1, bool op2, char operator) {
     } else if (operator == '!') {
         return !(op1);
     }
+    return false;
 }
