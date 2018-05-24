@@ -1,0 +1,11 @@
+B => A
+C => A
+
+= # A should be false.
+=7B # A should be true.
+=!C # A should be true.
+=+BC # A should be true.
+
+?A
+
+# forbiden characters in facts
