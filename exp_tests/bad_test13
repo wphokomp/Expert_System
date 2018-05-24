@@ -1,0 +1,10 @@
+(!B + C) | !F => A
+D | E + K => B
+B => C
+
+= # A should be false.
+=D # A should be true.
+=E # A should be true.
+=DE # A should be true.
+
+# no queries
