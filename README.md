@@ -1,3 +1,7 @@
+# Expert Systems
+> An AI System To Calculate Propotional Logical Expression - Binary Ways
+
+```
 while there are tokes to read:
 	read a token.
 	if it's a number, add it to the output queue.
@@ -11,3 +15,4 @@ while there are tokes to read:
 			pop operators from the stack onto the output queue
 		pop the left bracket from the stack and whack it.
 while there's operators on the stack, pop them to the output queue.
+```
