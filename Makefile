@@ -6,7 +6,7 @@
 #    By: wphokomp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 19:58:44 by wphokomp          #+#    #+#              #
-#    Updated: 2018/03/10 01:55:19 by wphokomp         ###   ########.fr        #
+#    Updated: 2018/05/25 17:19:54 by lmucassi         ###   ########.fr        #
 #    Updated: 2018/01/23 16:08:25 by lmucassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -62,5 +62,8 @@ fclean: clean
 	@echo "\x1b[31mEverything cleaned.\x1b[0m"
 
 re: fclean all
+
+norm:
+	@norminette src/
 
 .PHONY: clean fclean all re
