@@ -1,6 +1,8 @@
 # Expert Systems
-> An AI System To Calculate Propotional Logical Expression - Binary Ways
+> ##### An AI System To Calculate Propotional Logical Expression - Binary Ways
 
+
+- The logic behind:
 ```
 while there are tokes to read:
 	read a token.
