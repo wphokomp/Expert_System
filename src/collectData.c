@@ -91,4 +91,7 @@ void	getFacts(t_shunting *shunting)
 		if (shunting->data[i][0] == '=')
 			shunting->facts[++counter] = ft_strdup(shunting->data[i] + 1);
 	}
+    if (ft_strlen_point(shunting->facts) == 0) {
+        getError(TF_SYNTAX);
+    }
 }

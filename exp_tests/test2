@@ -1,12 +1,12 @@
-B + C | D => A
-D + (E | C)     => B
-G + H     => F
-I ^ J     => G
-G         => H
-L | M + D => K
-O + P     => L + N
-N         => M
+B => A
+D + E => B
+G + H => F
+I ^ J => G
+G => H
+L + M => K
+O + P => L + N
+N => M
 
-=DEJOP # AFKP is true
+=DEIJOP # AFKP is true
 =DEIJP # AFP is true, K is false
 ?AFKP

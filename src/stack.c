@@ -23,9 +23,8 @@ int		isFull(struct Stack* stack)
 	return (unsigned)stack->top == stack->capacity - 1;
 }
 
-int		isEmpty(struct Stack *stack)
-{
-	return stack->top == -1;
+int     isEmpty(struct Stack *stack) {
+    return (stack->top == -1);
 }
 
 char	lastItem(struct Stack *stack)

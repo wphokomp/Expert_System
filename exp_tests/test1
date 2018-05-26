@@ -3,7 +3,7 @@
 # shown here. spacing is not important
 
 C + C       => E        # C implies E
-G | !(C + A)   => D        # A and B and C implies D
+G | !(C + A) => D        # A and B and C implies D
 A | B       => C        # A or B implies C
 A + !B      => F        # A and not B implies F
 C | !G      => H        # C or not G implies H
@@ -16,7 +16,6 @@ E + F       => !V       # E and F implies not V
 
 =ABG                   # Initial facts : A, B and G are true. All others are false.
 =C
-
 # If no facts are initially true, then a simple "=" followed
 # by a newline is used
 

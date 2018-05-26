@@ -1,5 +1,5 @@
-(!B + C) | !F => A
-D | E + K => B
+B + C <=> A
+D | E => B
 B => C
 
 = # A should be false.

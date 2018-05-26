@@ -17,14 +17,18 @@
 typedef struct  s_shunting
 {
     char    **data;
-    char    **_expression;
     char    **facts;
     char    *operands;
+    char    *rightOperands;
     char    **queries;
+    int     *q;
     bool    **booleanVal;
+    bool    **rightBooleanVal;
     int     factIndx;
     char    **evalExpression;
-
+    struct  Stack *answers;
+    int     indx;
+    int     _sindx;
 }               t_shunting;
 
 struct Stack
@@ -56,5 +60,8 @@ void getExpressions(char **data, t_shunting *shunting);
 void getError(int error);
 void getQueries(t_shunting *shunting);
 void polishNotation(t_shunting *shunting);
+bool calculate(bool op1, bool op2, char _operator);
+void	getRightValues(t_shunting *shunting);
+bool **rightBooleanValue(t_shunting *shunting);
 
 #endif

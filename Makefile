@@ -28,7 +28,7 @@ OBJ		= $(patsubst %.c,%.o, $(SRCS))
 
 LIB		= ./libft/
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = #-Wall -Werror -Wextra
 
 all: $(NAME)
 
