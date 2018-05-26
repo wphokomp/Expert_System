@@ -10,6 +10,7 @@
 #   define USAGE_ERROR 3
 #   define FORMAT_ERROR 2
 #   define FILE_ERROR 1
+#	define TF_SYNTAX 4
 
 # define NO_OF_CHARS 256
 

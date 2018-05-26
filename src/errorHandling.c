@@ -20,6 +20,8 @@ void	getError(int error)
 		ft_putendl("Format of the file is invalid.");
 	else if (error == 3)
 		ft_putendl("Usage: ./expert_system [FILE_NAME]");
+	else if (error == 4)
+		ft_putendl("Test file not wwritten according to standard");
 	else
 		ft_putendl("There seems to be an error.");
 	exit(0);
