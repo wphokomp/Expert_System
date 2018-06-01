@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmucassi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/01 12:45:59 by lmucassi          #+#    #+#             */
+/*   Updated: 2018/06/01 12:47:39 by lmucassi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/exp_sys.h"
 
 void	getQueries(t_shunting *shunting) {
-    int		i;
-    int		counter;
-    
+	int		i;
+	int		counter;
+
 	i = -1;
 	counter = -1;
 	while (shunting->data[++i])
@@ -22,10 +34,10 @@ void	getQueries(t_shunting *shunting) {
 }
 
 bool	**booleanValue(t_shunting *shunting) {
-    int		i;
-    int		k;
-    int		f;
-    bool	**boolValue;
+	int		i;
+	int		k;
+	int		f;
+	bool	**boolValue;
 
 	i = -1;
 	boolValue = (bool **) malloc(ft_strlen_point(shunting->facts) * sizeof(bool));
@@ -52,15 +64,15 @@ int		main(int argc, char **argv)
 	int			iterate;
 	int			i;
 
-    if (argc == 2) {
-        fd = open(argv[1], O_RDONLY);
-        if (fd > 0) {
+	if (argc == 2) {
+		fd = open(argv[1], O_RDONLY);
+		if (fd > 0) {
 			shunting._sindx = 0;
-            getData(fd, argv[1], &shunting);
+			getData(fd, argv[1], &shunting);
 			getFacts(&shunting);
-            getValues(shunting.data, &shunting);
-            getRightOp(shunting.data, &shunting);
-            getRightValues(&shunting);
+			getValues(shunting.data, &shunting);
+			getRightOp(shunting.data, &shunting);
+			getRightValues(&shunting);
 			i = -1;
 			iterate = 1;
 			while (shunting.rightOperands[++i]) {
@@ -88,13 +100,13 @@ int		main(int argc, char **argv)
 				}
 				ft_putchar('\n');
 			}	
-        }
-        else
-            getError(FILE_ERROR);
-    }
-    else {
-        getError(USAGE_ERROR);
-        exit(1);
-    }
-    return (0);
+		}
+		else
+			getError(FILE_ERROR);
+	}
+	else {
+		getError(USAGE_ERROR);
+		exit(1);
+	}
+	return (0);
 }
